@@ -1,0 +1,6 @@
+{
+  "SESSION_SECRET": "SECRETSECRET",
+  "MONGO_NAME": "roar",
+  "MONGO_PASSWORD": "dadaya",
+  "CLIENT_URL": "http://localhost:3000" 
+}

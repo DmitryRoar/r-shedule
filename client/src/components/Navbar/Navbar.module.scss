@@ -1,0 +1,28 @@
+@import "../../styles/var";
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 15px;
+  height: $header-height;
+  border-bottom: 1px solid gray;
+  align-items: center;
+}
+
+.User {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.Logout {
+  a {
+    background: #000;
+    color: #fff;
+    font-size: .8rem;
+    padding: 6px 10px 6px 6px;
+  }
+}
