@@ -1,4 +1,4 @@
-import {Switch, Route, Redirect} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import {PrivateRoute} from './components/PrivateRoute/PrivateRoute'
 
 import {LoginPage} from './pages/Auth/Login/LoginPage'

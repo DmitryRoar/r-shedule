@@ -41,7 +41,7 @@ export const useAuth = () => {
 
   const logout = useCallback(async () => {
     try {
-      const {data} = await axios.get(`${environment.serverUrl}/api/logout`)
+      await axios.get(`${environment.serverUrl}/api/logout`)
       history.push('/login')
       localStorage.removeItem(StorageNames.userToken)
     } catch (err) {

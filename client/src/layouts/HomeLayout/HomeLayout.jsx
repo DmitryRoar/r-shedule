@@ -6,7 +6,7 @@ export const HomeLayout = ({children}) => {
   return (
     <div>
       <Navbar />
-      {/* {children} */}
+      {children}
     </div>
   )
 }
