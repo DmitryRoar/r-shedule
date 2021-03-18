@@ -35,20 +35,10 @@ app
   .use(express.json({extended: true}))
   .use(cors({
     original: config.get('CLIENT_URL'),
-    credentials: true
+    credentials: true,
+    origin: true
   }))
   .use(cookieParser())
-  // .use(session({
-  //   secret: config.get('SESSION_SECRET'),
-  //   resave: true,
-  //   store,
-  //   saveUninitialized: false,
-  //   cookie: {
-  //     maxAge: 3600000,
-  //     secure: false,
-  //     httpOnly: true
-  //   }
-  // }))
   .use(helmet())
   .use('/api/auth', authRouter)
   .use('/api/project', userMiddleware, projectRouter)

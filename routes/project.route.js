@@ -18,7 +18,7 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  console.log('cookie: ', req.cookies)
+  console.log('cookie: ', req.user)
   if (req.user === undefined) {
     res.json({msg: 'У вас нет проектов'})
   } else {

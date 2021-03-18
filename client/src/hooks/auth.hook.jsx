@@ -29,25 +29,12 @@ export const useAuth = () => {
   const login = useCallback(async (email, password) => {
     try {
       setLoginButtonDisabled(true)
-      // const {data} = await axios.post(`${environment.serverUrl}/api/auth/login`, {
-      //   email,
-      //   password
-      // }, {
-      //   // withCredentials: true,
-      //   headers: {
-      //     'Access-Control-Allow-Credentials': '*'
-      //   }
-      // })
-      const response = await fetch(`${environment.serverUrl}/api/auth/login`, {
-        method: 'POST',
-        body: JSON.stringify({email, password}),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+      const {data} = await axios.post(`${environment.serverUrl}/api/auth/login`, {
+        email,
+        password
+      }, {
+        withCredentials: true
       })
-      console.log([...response.headers.keys()])
-      const data = await response.json() 
       localStorage.setItem(StorageNames.userInfo, JSON.stringify({
         name: data.name,
         email: data.email

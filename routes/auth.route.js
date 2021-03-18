@@ -37,21 +37,9 @@ router.post('/login', validate(loginValidation, {}, {}), async (req, res) => {
 
       res.header('Authorization', `Bearer ${token}`)
 
-      res.cookie('user', '321313213321', {
-        httpOnly: false
+      res.cookie('userId', candidate._id, {
+        httpOnly: true
       })
-
-      // req.session.user = {
-      //   email: candidate.email, 
-      //   date: candidate.date,
-      //   id: candidate._id
-      // }
-      // req.session.isAuth = true 
-      // req.session.save(err => {
-      //   if (err) throw err
-      // }) 
-
-
 
       res.json({
         email: candidate.email, 
@@ -92,12 +80,8 @@ router.post('/sign-up', validate(loginValidation, {}, {}), async (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  // req.session.destroy(err => {
-  //   if (err) console.log('[LOGOUT_ROUTE]', err)
-
-  //   res.json({msg: 'Logout!'})
-  // })
-  res.json({msg: 'Logout!'})
+  Object.keys(req.cookies).forEach(key => res.clearCookie(key))
+  res.sendStatus(200)
 })
 
 module.exports = router

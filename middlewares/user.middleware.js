@@ -1,10 +1,10 @@
 const UserSchema = require('../schemas/user.schema')
 
 module.exports = async (req, _, next) => {
-  // if (req.session.user == undefined) {
-    // return next()
-  // }
+  if (req.cookies.userId == undefined) {
+    return next()
+  }
   
-  // req.user = await UserSchema.findById(req.session.user._id)
+  req.user = await UserSchema.findById(req.cookies.userId)
   next()
 }

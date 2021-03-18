@@ -9,7 +9,7 @@ export const useProject = () => {
 
   const getAll = async () => {
     try {
-      return await axios.get(`${environment.serverUrl}/api/project`)
+      return await axios.get(`${environment.serverUrl}/api/project`, { withCredentials: true })
     } catch (err) {
       history.push('/login')
       localStorage.clear()
