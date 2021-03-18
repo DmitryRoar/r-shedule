@@ -1,10 +1,12 @@
+@import "../../styles/var";
+
 .Wrap {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ccc;
+  background: $auth-background-color;
 }
 
 .Content {
@@ -12,7 +14,7 @@
   width: 350px;
   height: 500px;
   border-radius: 4px;
-  background: red;
+  background: $auth-content-color;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
 }
 
@@ -21,6 +23,7 @@
     padding: 5px 0;
     margin-right: 10px;
     background: none;
+    color: #858AA1;
 
     &.Active {
       border-bottom: 1px solid blue;

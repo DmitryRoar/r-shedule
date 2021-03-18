@@ -4,13 +4,13 @@ import classes from '../Auth.module.scss'
 import {useAuth} from '../../../hooks/auth.hook'
 
 import {AuthLayout} from '../../../layouts/AuthLayout/AuthLayout'
-import {AuthInput} from '../../../components/AuthInput/AuthInput'
+import {Input} from '../../../components/Input/Input'
 
 export const LoginPage = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
 
-  const {login} = useAuth()
+  const {login, loginButtonDisabled} = useAuth()
 
   const submitHandler = event => {
     event.preventDefault()
@@ -27,9 +27,15 @@ export const LoginPage = () => {
         className={classes.Form}
         onSubmit={submitHandler}
       >
-        <AuthInput text="Email" ref={emailRef} />
-        <AuthInput text="Пароль" ref={passwordRef} type="password" />
-        <button type="submit" className={classes['Form__Submit']}>войти</button>
+        <Input text="Email" ref={emailRef} className={classes.Input} />
+        <Input text="Пароль" ref={passwordRef} type="password" className={classes.Input} />
+        <button 
+          type="submit" 
+          className={classes['Form__Submit']}
+          disabled={loginButtonDisabled}
+        >
+          войти
+        </button>
       </form>
     </AuthLayout>
   )

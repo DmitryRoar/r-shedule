@@ -1,0 +1,20 @@
+@import "../../styles/var";
+
+.Wrap {
+  display: inline-flex;
+  width: 95%;
+}
+
+.Input {
+  margin: 0 10px 10px 0;
+
+  input {
+    border: 1px solid $project-input-color;
+    padding: 4px 20px 4px 5px;
+    margin-top: 5px;
+  }
+}
+
+.Remove {
+  background: none
+}

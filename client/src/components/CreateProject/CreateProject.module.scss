@@ -1,0 +1,80 @@
+@import "../../styles/var";
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .2);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.Wrap {
+  position: relative;
+  width: $create-project-width;
+  height: $create-project-height;
+  background: #fff;
+  z-index: 2;
+  padding: 10px 0 0 10px;
+  margin: 0 auto;
+}
+
+.Headline {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 15px 0;
+}
+
+.Inputs {
+  display: inline-flex;
+  &.Column {
+    flex-direction: column;
+  }
+}
+
+.Input {
+  margin-bottom: 20px;
+  display: inline-flex;
+  flex-direction: column;
+
+  label {
+    color: $project-label-color;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 6px 0 6px $auth-input-padding-left;
+    border: 2px solid $project-input-color;
+  }
+}
+
+.AddUserWrap {
+  height: 163px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: $projects-create-button-mb;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.AddUserButton {
+  margin-bottom: 15px;
+
+  button {
+    border: 2px solid $project-input-color;
+    background: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+}
+
+.CreateProjectButton {
+  background: none;
+  border: 2px solid $project-input-color;
+  padding: 5px 20px;
+  border-radius: 4px;
+}

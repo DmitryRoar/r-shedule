@@ -15,7 +15,9 @@ export const Navbar = () => {
   const {logout} = useAuth()
 
   useEffect(() => {
-    const {name, email} = JSON.parse(localStorage.getItem(StorageNames.userInfo))
+    const userFromStorage = JSON.parse(localStorage.getItem(StorageNames.userInfo))
+    if (userFromStorage === undefined) return
+    const {name, email} = userFromStorage
     setUser({name, email})
   }, [])
 

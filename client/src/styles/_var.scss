@@ -1,6 +1,9 @@
 // auth
 $auth-border-radius: 8px;
 $auth-input-padding-left: 5px;
+$auth-background-color: #F8F8FA;
+$auth-content-color: linear-gradient(to top, #303860 35%, #585E7E 100%); 
+$auth-submit-color: blue;
 
 // header
 $header-height: 30px;
@@ -8,5 +11,14 @@ $header-height: 30px;
 // project
 $project-wrap-width: 900px;
 $project-height: 150px;
-$project-border-color: #000;
+$project-wrap-border-color: #000;
 $project-color: blue;
+$project-label-color: #000;
+$projects-create-button-mb: 30px;
+$project-input-color: #000;
+
+$projects-list-border-color: rgb(42, 73, 42);
+$project-list-hover-color: #547AE8;
+
+$create-project-width: 480px;
+$create-project-height: 550px;

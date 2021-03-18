@@ -2,5 +2,7 @@
   "SESSION_SECRET": "SECRETSECRET",
   "MONGO_NAME": "roar",
   "MONGO_PASSWORD": "dadaya",
-  "CLIENT_URL": "http://localhost:3000" 
+  "CLIENT_URL": "http://localhost:3000",
+  "PASSPORT_SECRET": "secretdfssdfsf",
+  "JWT_SECRET": "dsadsadadjka"
 }

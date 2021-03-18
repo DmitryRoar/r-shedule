@@ -5,9 +5,25 @@
   flex-direction: column;
 
   &__Submit {
-    background: blue;
+    background: $auth-submit-color;
     color: #fff;
     padding: 5px;
+    border-radius: $auth-border-radius;
+  }
+}
+
+.Input {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: gray;
+    margin: 0 0 5px $auth-input-padding-left;
+  }
+
+  input {
+    padding: 6px 0 6px $auth-input-padding-left;
     border-radius: $auth-border-radius;
   }
 }
