@@ -7,6 +7,8 @@ const {validate, Joi} = require('express-validation')
 
 const UserSchema = require('../schemas/user.schema')
 
+const cookieOptions = require('../options/cookie.option')
+
 const loginValidation = {
   body: Joi.object({
     name: Joi.string(),
@@ -37,9 +39,7 @@ router.post('/login', validate(loginValidation, {}, {}), async (req, res) => {
 
       res.header('Authorization', `Bearer ${token}`)
 
-      res.cookie('userId', candidate._id, {
-        httpOnly: true
-      })
+      res.cookie('userId', candidate._id, cookieOptions)
 
       res.json({
         email: candidate.email, 

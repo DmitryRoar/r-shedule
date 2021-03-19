@@ -15,8 +15,8 @@ export const useAuth = () => {
     try {
       setSignUpButtonDisabled(true)
       await axios.post(`${environment.serverUrl}/api/auth/sign-up`, {
-        email, 
-        password, 
+        email: email.trim(), 
+        password: password.trim(), 
         name
       })
       history.push('/login')
@@ -30,11 +30,9 @@ export const useAuth = () => {
     try {
       setLoginButtonDisabled(true)
       const {data} = await axios.post(`${environment.serverUrl}/api/auth/login`, {
-        email,
-        password
-      }, {
-        withCredentials: true
-      })
+        email: email.trim(),
+        password: password.trim()
+      }, {withCredentials: true})
       localStorage.setItem(StorageNames.userInfo, JSON.stringify({
         name: data.name,
         email: data.email

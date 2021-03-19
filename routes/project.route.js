@@ -2,13 +2,13 @@ const {Router} = require('express')
 const router = Router()
 
 const ProjectSchema = require('../schemas/project.schema')
-// const UserSchema = require('../schemas/user.schema')
 
 router.post('/create', async (req, res) => {
   if (req.body === undefined) {
     res.status(411).send('Для создания проекта необходимо заполнить все поля')
   }
   const {name, desc, date, users} = req.body
+  users.forEach(u => u.userId = req.user)
 
   const project = new ProjectSchema({
     name, desc, date, users
@@ -18,11 +18,10 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  console.log('cookie: ', req.user)
   if (req.user === undefined) {
-    res.json({msg: 'У вас нет проектов'})
+    res.send([])
   } else {
-    return await ProjectSchema.find({email: req.user.email}) 
+    res.send(await ProjectSchema.find({'users.email': req.user.email}))
   }
 })
 

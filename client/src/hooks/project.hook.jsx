@@ -1,15 +1,15 @@
-import React from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 
-import environment from '../environment'
+import {serverUrl} from '../environment'
 
 export const useProject = () => {
   const history = useHistory()
 
   const getAll = async () => {
     try {
-      return await axios.get(`${environment.serverUrl}/api/project`, { withCredentials: true })
+      const {data} = await axios.get(`${serverUrl}/api/project`, {withCredentials: true})
+      return data
     } catch (err) {
       history.push('/login')
       localStorage.clear()
