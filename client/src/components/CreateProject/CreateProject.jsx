@@ -6,30 +6,34 @@ import {useProject} from '../../hooks/project.hook'
 import {Input} from '../Input/Input'
 import {AddUser} from '../AddUser/AddUser'
 
-import {StorageNames} from '../../storage-names'
-
 export const CreateProject = ({setCreateState}) => {
   const nameRef = useRef(null)
   const descRef = useRef(null)
   const dateRef = useRef(null)
 
-  const [countUsers, setCountUser] = useState([])
+  const [users, setUsers] = useState([])
 
   const {create, getAll} = useProject()
+
+  const editUser = (idx, data) => {
+    setUsers(prev => {
+      const prevVal = prev[idx]
+      return prev
+        .slice(0, idx)
+        .concat([{ ...prevVal, ...data }].concat(prev.slice(idx + 1)))
+    })
+  }
 
   const closeCreateHandler = () => {
     setCreateState(false)
   }
 
   const addUserHandler = () => {
-    setCountUser(prev => [...prev, prev.length])
-    console.log('count: ', countUsers)
+    setUsers(prev => [...prev, {email: '', rule: ''}])
   }
 
   const removeInputHandler = (idx) => {
-    console.log('idx: ', idx)
-    localStorage.removeItem(`${StorageNames.userChildren}-${idx}`)
-    setCountUser(prev => prev.filter(p => p !== idx))
+    setUsers(prev => [...prev.slice(0, idx), ...prev.slice(idx + 1)])
   }
 
   const submitHandler = event => {
@@ -38,12 +42,8 @@ export const CreateProject = ({setCreateState}) => {
     const name = nameRef.current.value.trim()
     const desc = descRef.current.value.trim()
     const date = dateRef.current.value.trim()
-
-    const storages = countUsers.map(userIdx => {
-      return JSON.parse(localStorage.getItem(`${StorageNames.userChildren}-${userIdx}`))
-    })
-
-    create(name, desc, date, storages)
+    
+    create(name, desc, date, users)
     closeCreateHandler()
     getAll()
   }
@@ -84,11 +84,16 @@ export const CreateProject = ({setCreateState}) => {
           <div className={classes.AddUserWrap}>
             <div className={classes.InputsColumn}>
               {
-                countUsers.map((userIdx, idx) => (
+                users.map((user, idx) => (
                   <AddUser 
-                    userIdx={userIdx} 
+                    userIdx={idx} 
                     key={idx} 
+                    setCountUser={setUsers}
                     onRemove={removeInputHandler}
+                    email={user.email}
+                    rule={user.rule}
+                    setEmail={(email) => editUser(idx, { email })}
+                    setRule={(rule) => editUser(idx, { rule })}
                   />
                 ))
               }

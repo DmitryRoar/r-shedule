@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import classes from './AddUser.module.scss'
 
 import {Input} from '../Input/Input'
 
-import {StorageNames} from '../../storage-names'
-
-export const AddUser = ({onRemove, userIdx}) => {
-  const [email, setEmail] = useState('')
-  const [rule, setRule] = useState('')
-
-  useEffect(() => {
-    localStorage.setItem(`${StorageNames.userChildren}-${userIdx}`, JSON.stringify({
-      email, rule
-    }))
-  }, [email, rule])
-
+export const AddUser = ({
+  email,
+  rule,
+  setEmail,
+  setRule,
+  onRemove,
+  userIdx
+}) => {
   return (
     <div className={classes.Wrap} >
       <Input 
