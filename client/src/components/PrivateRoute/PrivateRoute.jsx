@@ -8,7 +8,7 @@ export const PrivateRoute = ({ component: Component, auth, ...rest}) => (
       ? (
         <>
           <Component {...props} />
-          <Redirect to="/" />
+          <Redirect to="/" exact />
         </>
       ) 
       : <Redirect to="/login" />

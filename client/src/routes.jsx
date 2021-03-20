@@ -3,13 +3,16 @@ import {PrivateRoute} from './components/PrivateRoute/PrivateRoute'
 
 import {LoginPage} from './pages/Auth/Login/LoginPage'
 import {SignUpPage} from './pages/Auth/SignUp/SignUpPage'
+// private route
 import {HomePage} from './pages/Home/HomePage'
+import {ProjectPage} from './pages/Project/ProjectPage'
 
 export const Routes = isAuth => (
   <Switch>
     <Route path="/login" exact component={LoginPage} />
     <Route path="/sign-up" exact component={SignUpPage} />
 
-    <PrivateRoute path="/" component={HomePage} auth={isAuth} />
+    <PrivateRoute path="/project/:id" exact component={ProjectPage} auth={isAuth} />
+    <PrivateRoute path="/" exact component={HomePage} auth={isAuth} />
   </Switch>
 )

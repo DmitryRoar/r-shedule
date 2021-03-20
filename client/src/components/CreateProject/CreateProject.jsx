@@ -42,7 +42,7 @@ export const CreateProject = ({setCreateState}) => {
     const name = nameRef.current.value.trim()
     const desc = descRef.current.value.trim()
     const date = dateRef.current.value.trim()
-    
+
     create(name, desc, date, users)
     closeCreateHandler()
     getAll()
@@ -88,7 +88,6 @@ export const CreateProject = ({setCreateState}) => {
                   <AddUser 
                     userIdx={idx} 
                     key={idx} 
-                    setCountUser={setUsers}
                     onRemove={removeInputHandler}
                     email={user.email}
                     rule={user.rule}

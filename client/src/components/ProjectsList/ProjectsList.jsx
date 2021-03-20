@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import classes from './ProjectsList.module.scss'
 
+import {useHistory} from 'react-router-dom'
+
 import {useProject} from '../../hooks/project.hook'
 
 import {Loader} from '../Loader/Loader'
 
 export const ProjectsList = ({openCreate}) => {
   const [projects, setProjects] = useState([])
-  const {getAll} = useProject()
   const [loading, setLoading] = useState(true)
+
+  const {getAll} = useProject()
+  const history = useHistory()
 
   useEffect(() => {
     ;(async () => {
@@ -23,6 +27,10 @@ export const ProjectsList = ({openCreate}) => {
       }
     })()
   }, [])
+
+  const moveHandler = (id) => {
+    history.push(`/project/${id}`)
+  }
 
   return (
     <div>
@@ -57,7 +65,7 @@ export const ProjectsList = ({openCreate}) => {
                           <button>Редактировать</button>
                         </div>
                         <div className={classes.ListButtons}>
-                          <button>Перейти</button>
+                          <button onClick={moveHandler.bind(null, project._id)}>Перейти</button>
                         </div>
                       </div>
                     </div>
