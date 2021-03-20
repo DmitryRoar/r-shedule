@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import classes from './HomePage.module.scss'
 
 import {HomeLayout} from "../../layouts/HomeLayout/HomeLayout"
-import {CreateProject} from '../../components/CreateProject/CreateProject'
-import {ProjectsList} from '../../components/ProjectsList/ProjectsList'
+import {ProjectCreate} from '../../components/Project/ProjectCreate/ProjectCreate'
+import {Projects} from '../../components/Project/Projects/Projects'
 
 export const HomePage = () => {
   const [create, setCreate] = useState(false)
@@ -17,8 +17,8 @@ export const HomePage = () => {
       <div className={classes.Wrap}>
         {
           create
-          ? <CreateProject setCreateState={setCreate} />
-          : <ProjectsList openCreate={openCreateHandler} />
+          ? <ProjectCreate setCreateState={setCreate} />
+          : <Projects openCreate={openCreateHandler} />
         }
       </div>
     </HomeLayout>

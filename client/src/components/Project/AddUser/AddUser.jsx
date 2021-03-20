@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './AddUser.module.scss'
 
-import {Input} from '../Input/Input'
+import {Input} from '../../Input/Input'
 
 export const AddUser = ({
   email,

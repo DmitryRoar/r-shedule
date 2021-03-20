@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react'
-import classes from './CreateProject.module.scss'
+import classes from './ProjectCreate.module.scss'
 
-import {useProject} from '../../hooks/project.hook'
+import {useProject} from '../../../hooks/project.hook'
 
-import {Input} from '../Input/Input'
+import {Input} from '../../Input/Input'
 import {AddUser} from '../AddUser/AddUser'
 
-export const CreateProject = ({setCreateState}) => {
+export const ProjectCreate = ({setCreateState}) => {
   const nameRef = useRef(null)
   const descRef = useRef(null)
   const dateRef = useRef(null)
