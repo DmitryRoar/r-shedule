@@ -6,7 +6,7 @@ import {AddUser} from '../AddUser/AddUser'
 
 export const CreateProject = ({setCreateState}) => {
   const nameRef = useRef(null)
-  const deckRef = useRef(null)
+  const descRef = useRef(null)
   const dateRef = useRef(null)
 
   const [countUsers, setCountUser] = useState(0)
@@ -20,14 +20,28 @@ export const CreateProject = ({setCreateState}) => {
     setCountUser(prev => prev + 1)
   }
 
+  const submitHandler = event => {
+    event.preventDefault()
+
+    const name = nameRef.current.value
+    const desc = descRef.current.value
+    const date = dateRef.current.value
+
+    console.log(name)
+    console.log(desc)
+    console.log(date)
+  }
+
   return (
     <>
       <div className={classes.Overlay} onClick={closeCreateHandler}/>
-      <div className={classes.Wrap}>
+      <form className={classes.Wrap} onSubmit={submitHandler}>
         <div className={classes.Headline}>
           <h1>Создать проект (доску)</h1>
         </div>
-        <div className={`${classes.Inputs} ${classes.Column}`}>
+        <div 
+          className={`${classes.Inputs} ${classes.Column}`}
+        >
           <Input 
             text="Название проекта" 
             ref={nameRef} 
@@ -35,7 +49,7 @@ export const CreateProject = ({setCreateState}) => {
           /> 
           <Input 
             text="Описание проекта" 
-            ref={deckRef} 
+            ref={descRef} 
             className={classes.Input} 
           /> 
           <Input 
@@ -55,15 +69,25 @@ export const CreateProject = ({setCreateState}) => {
             <div className={classes.InputsColumn}>
               {
                 countUsersArr.map((_, idx) => (
-                  <AddUser key={idx} setCountUser={setCountUser} />
+                  <AddUser 
+                    id={idx} 
+                    key={idx} 
+                    setCountUser={setCountUser} 
+                    countUsersArr={countUsersArr}
+                  />
                 ))
               }
             </div>
           </div>
 
-          <button className={classes.CreateProjectButton}>Создать проект</button>
+          <button 
+            className={classes.CreateProjectButton}
+            type="submit"
+          >
+            Создать проект
+          </button>
         </div>
-      </div>
+      </form>
     </>
   )
 }

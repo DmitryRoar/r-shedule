@@ -23,7 +23,6 @@ export const ProjectsList = ({openCreate}) => {
       }
     })()
   }, [])
-  console.log(projects)
 
   return (
     <div>
