@@ -4,24 +4,32 @@ const router = Router()
 const ProjectSchema = require('../schemas/project.schema')
 
 router.post('/create', async (req, res) => {
-  if (req.body === undefined) {
-    res.status(411).send('Для создания проекта необходимо заполнить все поля')
-  }
   const {name, desc, date, users} = req.body
-  users.forEach(u => u.userId = req.user)
-
-  const project = new ProjectSchema({
-    name, desc, date, users
-  })
-  await project.save()
-  res.json({msg: 'Проект успешно создан!'}) 
+  if (!users.length) {
+    users.push({email: req.user.email, rule: 'Owner'})
+  }
+  if (
+    name === '' ||
+    desc === '' ||
+    date === ''
+  ) {
+    res.status(411).send('Для создания проекта необходимо заполнить все поля')
+  } else {
+    const project = new ProjectSchema({
+      name, desc, date, users, ownerId: req.user._id
+    })
+    await project.save()
+    res.json({msg: 'Проект успешно создан!'}) 
+  }
 })
 
 router.get('/', async (req, res) => {
   if (req.user === undefined) {
     res.send([])
   } else {
-    res.send(await ProjectSchema.find({'users.email': req.user.email}))
+    res.send(await ProjectSchema.find({$or: [
+      {'users.email': req.user.email}, {ownerId: req.user._id}
+    ]}))
   }
 })
 

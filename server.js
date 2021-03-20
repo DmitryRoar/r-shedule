@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const session = require('express-session')
-const MongoStore = require('connect-mongodb-session')(session)
 const config = require('config')
 const express = require('express')
 const cors = require('cors')
@@ -11,7 +9,6 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 const passportMiddleware = require('./middlewares/passport.middleware')
-const authMiddleware = require('./middlewares/auth.middleware')
 const userMiddleware = require('./middlewares/user.middleware')
 
 const authRouter = require('./routes/auth.route')
@@ -21,11 +18,6 @@ const PORT = process.env.PORT || 4315
 const mongoName = config.get('MONGO_NAME')
 const mongoPassword = config.get('MONGO_PASSWORD')
 const mongoUri = `mongodb+srv://${mongoName}:${mongoPassword}@cluster0.jy9hi.mongodb.net/shedule`
-
-const store = new MongoStore({
-  collection: 'sessions',
-  uri: mongoUri
-})
 
 app.use(passport.initialize())
 passportMiddleware(passport)

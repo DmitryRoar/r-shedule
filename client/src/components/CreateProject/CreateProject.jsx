@@ -1,35 +1,51 @@
 import React, {useRef, useState} from 'react'
 import classes from './CreateProject.module.scss'
 
+import {useProject} from '../../hooks/project.hook'
+
 import {Input} from '../Input/Input'
 import {AddUser} from '../AddUser/AddUser'
+
+import {StorageNames} from '../../storage-names'
 
 export const CreateProject = ({setCreateState}) => {
   const nameRef = useRef(null)
   const descRef = useRef(null)
   const dateRef = useRef(null)
 
-  const [countUsers, setCountUser] = useState(0)
-  const countUsersArr = Array.from({length: countUsers}).fill('')
+  const [countUsers, setCountUser] = useState([])
+
+  const {create, getAll} = useProject()
 
   const closeCreateHandler = () => {
     setCreateState(false)
   }
 
   const addUserHandler = () => {
-    setCountUser(prev => prev + 1)
+    setCountUser(prev => [...prev, prev.length])
+    console.log('count: ', countUsers)
+  }
+
+  const removeInputHandler = (idx) => {
+    console.log('idx: ', idx)
+    localStorage.removeItem(`${StorageNames.userChildren}-${idx}`)
+    setCountUser(prev => prev.filter(p => p !== idx))
   }
 
   const submitHandler = event => {
     event.preventDefault()
 
-    const name = nameRef.current.value
-    const desc = descRef.current.value
-    const date = dateRef.current.value
+    const name = nameRef.current.value.trim()
+    const desc = descRef.current.value.trim()
+    const date = dateRef.current.value.trim()
 
-    console.log(name)
-    console.log(desc)
-    console.log(date)
+    const storages = countUsers.map(userIdx => {
+      return JSON.parse(localStorage.getItem(`${StorageNames.userChildren}-${userIdx}`))
+    })
+
+    create(name, desc, date, storages)
+    closeCreateHandler()
+    getAll()
   }
 
   return (
@@ -61,19 +77,18 @@ export const CreateProject = ({setCreateState}) => {
         </div>
 
         <div className={classes.AddUserButton}>
-          <button onClick={addUserHandler}>Добавить пользователя</button>
+          <button type="button" onClick={addUserHandler}>Добавить пользователя</button>
         </div>
 
         <div className={classes.AddUser}>
           <div className={classes.AddUserWrap}>
             <div className={classes.InputsColumn}>
               {
-                countUsersArr.map((_, idx) => (
+                countUsers.map((userIdx, idx) => (
                   <AddUser 
-                    id={idx} 
+                    userIdx={userIdx} 
                     key={idx} 
-                    setCountUser={setCountUser} 
-                    countUsersArr={countUsersArr}
+                    onRemove={removeInputHandler}
                   />
                 ))
               }

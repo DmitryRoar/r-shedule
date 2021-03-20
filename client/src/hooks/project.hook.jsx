@@ -17,15 +17,21 @@ export const useProject = () => {
     }
   }
 
-  // const create = async () => {
-  //   try {
-  //     const {data} = await axios.post()
-  //   } catch (err) {
-  //     console.log('[CREATE_HOOK]', err)
-  //   }
-  // }
+  const create = async (name, desc, date, users) => {
+    try {
+      return await axios.post(`${serverUrl}/api/project/create`, {
+        name,
+        desc,
+        date,
+        users
+      }, {withCredentials: true})
+    } catch (err) {
+      console.log('[CREATE_HOOK]', err)
+    }
+  }
 
   return {
-    getAll
+    getAll,
+    create
   }
 }

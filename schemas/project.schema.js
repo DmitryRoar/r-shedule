@@ -7,13 +7,13 @@ const projectSchema = new Schema({
   users: [
     {
       email: String,
-      rule: String,
-      userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
+      rule: String
     }
-  ]
+  ],
+  ownerId: {
+    ref: 'User',
+    type: Schema.Types.ObjectId
+  }
 })
 
 module.exports = model('Project', projectSchema)
