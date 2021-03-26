@@ -6,7 +6,7 @@ import {useProject} from '../../../hooks/project.hook'
 import {Input} from '../../Input/Input'
 import {AddUser} from '../AddUser/AddUser'
 
-export const ProjectCreate = ({setCreateState}) => {
+export const ProjectCreate = ({submitText, setCreateState}) => {
   const nameRef = useRef(null)
   const descRef = useRef(null)
   const dateRef = useRef(null)
@@ -103,7 +103,7 @@ export const ProjectCreate = ({setCreateState}) => {
             className={classes.CreateProjectButton}
             type="submit"
           >
-            Создать проект
+            {submitText}
           </button>
         </div>
       </form>

@@ -10,6 +10,10 @@ export const ProjectsList = ({projects}) => {
     history.push(`/project/${id}`)
   }
 
+  const editHandler = (id) => {
+    history.push(`/project/edit/${id}`)
+  }
+
   return (
     <div className={classes.ProjectsList}>
       {projects.map(project => (
@@ -22,7 +26,7 @@ export const ProjectsList = ({projects}) => {
               </div>
 
               <div className={classes.ListButtons}>
-                <button>Редактировать</button>
+                <button onClick={editHandler.bind(null, project._id)}>Редактировать</button>
               </div>
               <div className={classes.ListButtons}>
                 <button onClick={moveHandler.bind(null, project._id)}>Перейти</button>

@@ -17,7 +17,7 @@ export const HomePage = () => {
       <div className={classes.Wrap}>
         {
           create
-          ? <ProjectCreate setCreateState={setCreate} />
+          ? <ProjectCreate submitText="Создать проект" setCreateState={setCreate} />
           : <Projects openCreate={openCreateHandler} />
         }
       </div>

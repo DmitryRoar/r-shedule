@@ -25,6 +25,7 @@ export const Projects = ({openCreate}) => {
         console.log('[PROJECTLIST_EFFECT]: ', err)
       }
     })()
+    // eslint-disable-next-line
   }, [])
 
   return (

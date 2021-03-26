@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 const passportMiddleware = require('./middlewares/passport.middleware')
+const authMiddleware = require('./middlewares/auth.middleware')
 const userMiddleware = require('./middlewares/user.middleware')
 
 const authRouter = require('./routes/auth.route')
@@ -33,7 +34,9 @@ app
   .use(cookieParser())
   .use(helmet())
   .use('/api/auth', authRouter)
-  .use('/api/project', userMiddleware, projectRouter)
+  .use(authMiddleware)
+  .use(userMiddleware)
+  .use('/api/project', projectRouter)
 
 const start = async () => {
   try {
