@@ -3,8 +3,9 @@ import classes from './ProjectCard.module.scss'
 
 import {Card} from '../Card/Card'
 
-export const ProjectCard = ({card, onCard}) => (
+export const ProjectCard = ({card, onCardOpen, onCardClose}) => (
   <div className={classes.Wrap}>
+    <div className={classes.Content}>
     <div className={classes.Headline}>
       <div className={classes.HeadlineText}>
         <h2>{card.title}</h2>
@@ -17,20 +18,26 @@ export const ProjectCard = ({card, onCard}) => (
     </div>
 
     <div className={classes.Action}>
-      <div className={classes.Button}>
-        <button onClick={onCard.bind(null, card.id)}>
-          <i className="fas fa-plus"/>
-          Добавить карточку
-        </button>
-      </div>
-      <div className={classes.Picture}>
-        <button>
-          <i className="far fa-images"/>
-        </button>
-      </div>
+      {
+        card.active
+        ? <Card onCard={onCardClose} id={card.id} />
+        : <>
+            <div className={classes.Button}>
+              <button onClick={onCardOpen.bind(null, card.id)}>
+                <i className="fas fa-plus"/>
+                  Добавить карточку
+              </button>
+            </div>
+            <div className={classes.Picture}>
+              <button>
+                <i className="far fa-images"/>
+              </button>
+            </div>
+        </>
+      }
+    </div>
     </div>
 
-
-    {card.active && <Card/>}
+    
   </div>
 )

@@ -1,13 +1,14 @@
 @import '../../../styles/var';
 
-.Wrap {
+.Content {
   width: $project-info-card-width;
-  height: $project-info-card-height;
+  min-height: $project-info-card-height;
   background: $project-info-card-background;
+  padding: $project-info-card-padding;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: $project-info-card-padding;
+  border-radius: 4px;
 }
 
 
@@ -18,6 +19,8 @@
 }
 
 .Headline {
+  margin-bottom: 10px;
+
   &Text {
     font-weight: 700;
   }

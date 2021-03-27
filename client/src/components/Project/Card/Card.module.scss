@@ -1,0 +1,47 @@
+@import "src/styles/var";
+
+.Form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+
+  button {
+    color: #AAB1BE;
+  }
+
+  textarea {
+    margin-bottom: 5px;
+    padding: 0 2px;
+    height: 50px;
+    resize: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.Action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .ActionMain {
+    display: flex;
+    align-items: center;
+
+    .Remove {
+      font-size: 2rem;
+      margin-left: 5px;
+    }
+
+    .SubmitButton {
+      button {
+        background: $green-color;
+        color: #fff;
+        padding: 5px 10px;
+      }
+    }
+  }
+}

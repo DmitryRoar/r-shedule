@@ -5,14 +5,40 @@ import {ProjectCard} from '../../../components/Project/ProjectCard/ProjectCard'
 
 export const ProjectPage = () => {
   const [cards, setCards] = useState([
-    {title: 'Нужно сделать', active: false, id: 1},
-    {title: 'В процессе', active: false, id: 2},
-    {title: 'Готово', active: false, id: 3}
+    {
+      title: 'Нужно сделать', 
+      active: false, 
+      cards: [],
+      id: 1
+    },
+    {
+      title: 'В процессе', 
+      active: false, 
+      cards: [],
+      id: 2
+    },
+    {
+      title: 'Готово', 
+      active: false, 
+      cards: [],
+      id: 3
+    }
   ])
-  const cardHandler = (id) => {
+  const openCard = id => {
     setCards(prev => prev
       .map(p => {
         p.id === id ? p.active = true : p.active = false 
+        return p
+      })
+    )
+  }
+
+  const closeCard = id => {
+    setCards(prev => prev
+      .map(p => {
+        if (p.id === id) {
+          p.active = false
+        }
         return p
       })
     )
@@ -24,8 +50,9 @@ export const ProjectPage = () => {
         {cards.map((card, idx) => (
           <ProjectCard
             key={idx}
-            onCard={cardHandler}
+            onCardOpen={openCard}
             card={card}
+            onCardClose={closeCard}
           />
         ))}
       </div>
