@@ -2,6 +2,7 @@ const {Router} = require('express')
 const router = Router()
 
 const ProjectSchema = require('../schemas/project.schema')
+const UserSchema = require('../schemas/user.schema')
 
 router.post('/create', async (req, res) => {
   const {name, desc, date, users} = req.body
@@ -31,6 +32,10 @@ router.get('/', async (req, res) => {
       {'users.email': req.user.email}, {ownerId: req.user._id}
     ]}))
   }
+})
+
+router.get('/emails', async (req, res) => {
+  res.send(await UserSchema.find({}).select('email'))
 })
 
 module.exports = router

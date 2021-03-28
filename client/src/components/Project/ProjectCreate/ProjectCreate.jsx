@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import classes from './ProjectCreate.module.scss'
 
 import {useProject} from '../../../hooks/project.hook'
@@ -13,7 +13,14 @@ export const ProjectCreate = ({submitText, setCreateState}) => {
 
   const [users, setUsers] = useState([])
 
-  const {create, getAll} = useProject()
+  const {create, getAll, getEmails} = useProject()
+  const [emails, setEmails] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      setEmails(await getEmails())
+    })()
+  }, [])
 
   const editUser = (idx, data) => {
     setUsers(prev => {
@@ -87,7 +94,8 @@ export const ProjectCreate = ({submitText, setCreateState}) => {
                 users.map((user, idx) => (
                   <AddUser 
                     userIdx={idx} 
-                    key={idx} 
+                    key={idx}
+                    userEmails={emails}
                     onRemove={removeInputHandler}
                     email={user.email}
                     rule={user.rule}

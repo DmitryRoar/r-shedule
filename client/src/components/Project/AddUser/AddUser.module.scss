@@ -5,8 +5,12 @@
   width: 95%;
 }
 
+.temp {
+  margin-bottom: 10px;
+}
+
 .Input {
-  margin: 0 10px 10px 0;
+  margin: 0 10px 0 0;
 
   input {
     border: 1px solid $project-input-color;

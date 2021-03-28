@@ -17,6 +17,15 @@ export const useProject = () => {
     }
   }
 
+  const getEmails = async () => {
+    try {
+      const {data} = await axios.get(`${serverUrl}/api/project/emails`, {withCredentials: true})
+      return data
+    } catch (err) {
+      console.log('[GETEMAILS_HOOK]', err)
+    }
+  }
+
   const create = async (name, desc, date, users) => {
     try {
       return await axios.post(`${serverUrl}/api/project/create`, {
@@ -32,6 +41,7 @@ export const useProject = () => {
 
   return {
     getAll,
-    create
+    create,
+    getEmails
   }
 }
