@@ -10,8 +10,8 @@ router.post('/create', async (req, res) => {
     users.push({email: req.user.email, rule: 'Owner'})
   }
   if (
-    name === '' ||
-    desc === '' ||
+    name === '' &&
+    desc === '' &&
     date === ''
   ) {
     res.status(411).send('Для создания проекта необходимо заполнить все поля')

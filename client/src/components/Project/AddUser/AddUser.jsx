@@ -23,8 +23,8 @@ export const AddUser = ({
         />
         <div>
           <select>
-            {userEmails.map(e => (
-              <option>{e.email}</option>
+            {userEmails.map((e, idx) => (
+              <option key={idx}>{e.email}</option>
             ))}
           </select>
         </div>
